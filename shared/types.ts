@@ -104,6 +104,31 @@ export interface PagedResult<T> {
   pageSize: number
 }
 
+export type QualityDimensionKey = 'readability' | 'aesthetics' | 'compatibility'
+
+export interface QualityDimensionScore {
+  key: QualityDimensionKey
+  label: string
+  score: number
+  maxScore: number
+  suggestions: string[]
+}
+
+export interface QualityScore {
+  overall: number
+  dimensions: QualityDimensionScore[]
+  grade: 'A' | 'B' | 'C' | 'D' | 'F'
+  lowScore: boolean
+  suggestions: string[]
+}
+
+export interface BatchItemScore {
+  index: number
+  value: string
+  url: string
+  quality: QualityScore
+}
+
 export interface ApiResponse<T> {
   success: boolean
   data?: T
